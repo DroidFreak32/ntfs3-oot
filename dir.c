@@ -9,12 +9,8 @@
 #include <linux/blkdev.h>
 #include <linux/buffer_head.h>
 #include <linux/fs.h>
-#include <linux/nls.h>
-#include <linux/version.h>
-
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 16, 0)
 #include <linux/iversion.h>
-#endif
+#include <linux/nls.h>
 
 #include "debug.h"
 #include "ntfs.h"
