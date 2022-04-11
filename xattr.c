@@ -659,11 +659,7 @@ static int ntfs_xattr_get_acl(
 	struct posix_acl *acl;
 	int err;
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
 	if (!(inode->i_sb->s_flags & SB_POSIXACL))
-#else
-	if (!(inode->i_sb->s_flags & MS_POSIXACL))
-#endif
 		return -EOPNOTSUPP;
 
 	acl = ntfs_get_acl(inode, type);
@@ -694,11 +690,7 @@ static int ntfs_xattr_set_acl(
 	struct posix_acl *acl;
 	int err;
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
 	if (!(inode->i_sb->s_flags & SB_POSIXACL))
-#else
-	if (!(inode->i_sb->s_flags & MS_POSIXACL))
-#endif
 		return -EOPNOTSUPP;
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
@@ -830,11 +822,7 @@ int ntfs_acl_chmod(struct inode *inode)
 {
 	struct super_block *sb = inode->i_sb;
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
 	if (!(sb->s_flags & SB_POSIXACL))
-#else
-	if (!(sb->s_flags & MS_POSIXACL))
-#endif
 		return 0;
 
 	if (S_ISLNK(inode->i_mode))
